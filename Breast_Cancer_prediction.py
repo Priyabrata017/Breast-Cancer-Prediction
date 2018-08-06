@@ -11,7 +11,7 @@ data=pd.read_csv('data_2.csv')
 sns.heatmap(data.isnull(),yticklabels=False,cbar=False,cmap='viridis')
 plt.show()  
 
-#Converting the categorical variable to dummy variable(0 or !)
+#Converting the categorical variable to dummy variable(0 or 1)
 diag=pd.get_dummies(data['diagnosis'],drop_first=True)
 data.drop(['diagnosis','id'],axis=1,inplace=True)
 data=pd.concat([data,diag],axis=1)
@@ -37,7 +37,7 @@ clf.fit(X_train,y_train)
 #Predicting the result
 predict=clf.predict(X_test)
 from sklearn.metrics import accuracy_score,confusion_matrix
-a=accuracy_score(predict,y_test)  #0.9190=91%
+a=accuracy_score(predict,y_test)  #0.9190*100=91.9%
 cm=confusion_matrix(y_test,predict)
 '''[[84,  6],
        [ 6, 47]], dtype=int64)'''
